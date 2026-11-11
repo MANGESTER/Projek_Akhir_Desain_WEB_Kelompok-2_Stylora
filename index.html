@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Fashion Stylora</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stylora — Direktori Inspirasi Fashion Lokal</title>
+<meta name="description" content="Stylora: direktori dan agregator inspirasi fashion lokal. Temukan gayamu, belanja di toko pilihanmu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+<div class="topbar">Direktori inspirasi fashion lokal &nbsp;·&nbsp; Belanja langsung di toko pilihanmu</div>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#/" aria-label="Stylora, ke beranda">stylora.</a>
+    <nav id="menu" aria-label="Menu utama">
+      <a href="#/" data-r="">Beranda</a>
+      <a href="#/koleksi-terbaru" data-r="koleksi-terbaru">Koleksi Terbaru</a>
+      <a href="#/wanita" data-r="wanita">Wanita</a>
+      <a href="#/pria" data-r="pria">Pria</a>
+      <a href="#/aksesori" data-r="aksesori">Aksesori</a>
+      <a href="#/inspirasi" data-r="inspirasi">Inspirasi Gaya</a>
+    </nav>
+    <div class="acts">
+      <button id="sbtn" aria-label="Cari produk">Cari</button>
+      <a href="#/favorit" class="favlink" aria-label="Favorit">Favorit <b id="favN">0</b></a>
+      <button id="burger" aria-label="Buka menu">☰</button>
+    </div>
+  </div>
+  <div id="search" class="search" hidden>
+    <div class="wrap">
+      <input id="q" type="search" placeholder="Cari gaya, produk, atau brand" autocomplete="off" aria-label="Cari">
+      <div id="sres"></div>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<section class="news">
+  <div class="wrap news-in">
+    <div><p class="eb">Tetap terhubung</p><h2>Cerita baru, langsung untukmu.</h2><p class="mut">Dapatkan kabar koleksi terbaru dan inspirasi gaya di kotak masukmu.</p></div>
+    <form id="nl" novalidate>
+      <label for="em">Alamat email</label>
+      <div class="nl-row"><input id="em" type="email" placeholder="Masukkan alamat email kamu" required><button class="btn" type="submit">Berlangganan ↗</button></div>
+      <small id="nlmsg">Dengan berlangganan, kamu menyetujui Kebijakan Privasi kami. Berhenti kapan saja.</small>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><a class="logo" href="#/">stylora.</a><p class="mut">Direktori inspirasi fashion. Temukan gayamu, belanja di toko pilihanmu.</p><p class="mut">halo@stylora.id</p></div>
+    <div><h4>Jelajahi</h4><a href="#/koleksi-terbaru">Koleksi terbaru</a><a href="#/wanita">Wanita</a><a href="#/pria">Pria</a><a href="#/aksesori">Aksesori</a><a href="#/inspirasi">Inspirasi gaya</a></div>
+    <div><h4>Bantuan</h4><a href="mailto:halo@stylora.id">Hubungi kami</a><a href="#/tentang">Cara kerja Stylora</a><a href="#/favorit">Favoritku</a></div>
+    <div><h4>Tentang kami</h4><a href="#/tentang">Cerita Stylora</a><a href="#/tentang">Nilai &amp; komitmen</a></div>
+    <div><h4>Ikuti kami</h4><a href="https://instagram.com" target="_blank" rel="noopener">Instagram ↗</a><a href="https://tiktok.com" target="_blank" rel="noopener">TikTok ↗</a><a href="https://pinterest.com" target="_blank" rel="noopener">Pinterest ↗</a></div>
+  </div>
+  <div class="wrap foot-b"><span>© 2026 Stylora · Proyek Kelompok 2, PTIK UNS</span><span>Harga adalah referensi dari toko brand</span></div>
+</footer>
+
+<div id="modal" class="modal" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="data.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
