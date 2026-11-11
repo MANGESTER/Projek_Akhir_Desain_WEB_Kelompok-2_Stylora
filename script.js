@@ -210,7 +210,6 @@ function bukaModalBeli(id, namaToko) {
   ambil('.box .btn').focus();
 }
 
-
 // ===== 4. KOMPONEN HTML =====
 
 // Titik warna + teks "3 pilihan warna"
@@ -838,7 +837,6 @@ function halamanFavorit() {
   return { judul: 'Favorit', html: html, setelah: perbaruiGrid };
 }
 
-
 // ===== 6. ROUTER =====
 // Alamat memakai hash, contoh: index.html#/produk/w1
 // "#/produk/w1" dipecah menjadi ['', 'produk', 'w1']
@@ -896,7 +894,6 @@ function tampilkanHalaman() {
   tutupModal();
   window.scrollTo(0, 0);
 }
-
 
 // ===== 7. EVENT =====
 
@@ -1080,7 +1077,6 @@ ambil('#nl').addEventListener('submit', function (e) {
   pesan.textContent = 'Terima kasih, kamu sudah terdaftar.';
   ambil('#em').value = '';
 });
-
 
 // ===== 8. JALANKAN APLIKASI =====
 
