@@ -1120,3 +1120,258 @@ blockquote {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Efek klik, hover, dan transisi ===== */
+/* Catatan: transition = perubahan halus saat hover/klik, @keyframes = animasi yang dijalankan sendiri */
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Tombol: naik sedikit saat hover, "tertekan" saat diklik */
+.btn {
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(63, 70, 49, 0.25);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
+}
+
+/* Tombol kecil: ukuran, warna, ikon hati, tab */
+.sz,
+.sw,
+.fv,
+.heart,
+.tab,
+#menu a,
+.thumbs img {
+  transition: all 0.2s ease;
+}
+
+.heart svg,
+.fv svg {
+  transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+.sz:hover {
+  border-color: var(--ink);
+}
+
+.sw:hover,
+.heart:hover,
+.fv:hover {
+  transform: scale(1.12);
+}
+
+.sz:active,
+.sw:active,
+.tab:active,
+.heart:active,
+.fv:active {
+  transform: scale(0.9);
+}
+
+.thumbs button:hover img {
+  border-color: var(--mut);
+}
+
+/* Link teks di navbar dan footer */
+.favlink,
+#sbtn,
+.ul,
+.foot-in a {
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.favlink:hover,
+#sbtn:hover,
+.ul:hover {
+  opacity: 0.6;
+}
+
+/* Kartu produk naik sedikit saat hover */
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* Kartu kategori & artikel */
+.cat img,
+.art img {
+  transition: opacity 0.3s ease;
+}
+
+.cat:hover img,
+.art:hover img {
+  opacity: 0.85;
+}
+
+.cat h3 i {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.cat:hover h3 i {
+  transform: translate(3px, -3px);
+}
+
+/* Ulasan */
+.rv {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Kolom isian dan dropdown */
+input,
+select {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--olive);
+  box-shadow: 0 0 0 3px rgba(98, 103, 79, 0.2);
+}
+
+/* Foto produk memudar saat diganti thumbnail */
+.gal > img {
+  transition: opacity 0.2s ease;
+}
+
+.pudar {
+  opacity: 0;
+}
+
+/* --- Animasi (@keyframes) --- */
+@keyframes muncul {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes turun {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes zoomMasuk {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pudarMasuk {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Kartu produk muncul satu per satu (juga saat filter/sort diganti) */
+.card {
+  animation: muncul 0.45s ease backwards;
+}
+
+.card:nth-child(4n + 2) {
+  animation-delay: 0.06s;
+}
+
+.card:nth-child(4n + 3) {
+  animation-delay: 0.12s;
+}
+
+.card:nth-child(4n + 4) {
+  animation-delay: 0.18s;
+}
+
+/* Ikon hati "membal" saat diklik (kelas pop ditambah lewat JavaScript) */
+.heart.pop svg,
+.fv.pop svg {
+  animation: pop 0.4s ease;
+}
+
+/* Kotak pencarian, menu HP, dan modal muncul dengan halus */
+.search:not([hidden]) {
+  animation: turun 0.3s ease;
+}
+
+#menu.open {
+  animation: turun 0.25s ease;
+}
+
+.modal:not([hidden]) {
+  animation: pudarMasuk 0.25s ease;
+}
+
+.modal:not([hidden]) .box {
+  animation: zoomMasuk 0.3s ease;
+}
+
+/* Bagian halaman memudar naik saat di-scroll (kelas diatur lewat JavaScript) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.tampil {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hormati pengguna yang mematikan animasi di perangkatnya */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

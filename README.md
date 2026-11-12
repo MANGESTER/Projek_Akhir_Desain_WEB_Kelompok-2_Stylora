@@ -8,6 +8,7 @@ style.css    Design system, layout responsif (Grid/Flexbox)      -> Ken
 data.js      Data produk, artikel, ulasan (dummy)                -> Adibah / Dika
 script.js    Logika: routing, pencarian, filter, sort, PDP,
              modal "Beli di...", favorit (localStorage)          -> Dika
+favicon.svg  Logo di tab browser (+ favicon-32.png, apple-touch-icon.png)
 img/         Aset gambar (hasil potongan dari mockup)            -> Fatimah
 README.md    Dokumentasi + catatan perubahan                     -> Keisha
 ```
@@ -30,6 +31,11 @@ Deploy: GitHub repo > Settings > Pages > Branch `main` / root. Navigasi memakai 
 | Favorit | `#/favorit` | Mockup 1 (Wishlist) |
 
 Fitur sesuai dokumen: pencarian, penyaringan kategori, sorting, PDP, modal "Beli di...", favorit berbasis `localStorage` (kunci `stylora:fav`).
+
+## Efek & Transisi
+- **CSS** (bagian paling bawah `style.css`): hover/klik tombol, kartu naik saat hover, fokus input, kartu muncul bertahap, modal/pencarian/menu HP muncul halus.
+- **JavaScript** (`efekPop`, `aktifkanEfekMuncul` di `script.js`): ikon hati "membal" saat diklik, bagian halaman memudar naik saat di-scroll, foto produk memudar saat ganti thumbnail.
+- Efek otomatis mati bagi pengguna yang mengaktifkan "kurangi gerakan" di perangkatnya (`prefers-reduced-motion`).
 
 ---
 ## Catatan Perubahan & Tambahan terhadap Mockup / Pembagian Tugas

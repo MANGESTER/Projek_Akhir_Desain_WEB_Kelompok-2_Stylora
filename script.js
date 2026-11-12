@@ -2,7 +2,7 @@
   Stylora — script.js
   Isi file ini (urut dari atas):
     1. Alat bantu          5. Halaman-halaman
-    2. Favorit             6. Router (pindah halaman)
+    2. Favorit (+ efek)    6. Router (pindah halaman)
     3. Toast & modal       7. Event (klik, cari, newsletter)
     4. Komponen HTML       8. Jalankan aplikasi
   Data produk, artikel, dan ulasan ada di data.js
@@ -138,6 +138,7 @@ function ubahFavorit(id) {
 
   simpanFavorit(daftar);
   perbaruiFavorit();
+  efekPop(id);
 
   // Di halaman Favorit, daftar harus digambar ulang
   if (location.hash === '#/favorit') {
@@ -154,6 +155,45 @@ function perbaruiFavorit() {
   for (let i = 0; i < tombolHati.length; i++) {
     const aktif = daftar.indexOf(tombolHati[i].dataset.fav) !== -1;
     tombolHati[i].classList.toggle('on', aktif);
+  }
+}
+
+
+// ===== 2b. EFEK TAMPILAN =====
+
+// Ikon hati "membal" sebentar setelah diklik
+function efekPop(id) {
+  const tombol = ambilSemua('[data-fav="' + id + '"]');
+  for (let i = 0; i < tombol.length; i++) {
+    tombol[i].classList.add('pop');
+  }
+  setTimeout(function () {
+    for (let i = 0; i < tombol.length; i++) {
+      tombol[i].classList.remove('pop');
+    }
+  }, 400);
+}
+
+// Bagian halaman memudar naik saat mulai terlihat di layar
+function aktifkanEfekMuncul() {
+  // Browser lama tanpa IntersectionObserver: biarkan tampil biasa
+  if (!('IntersectionObserver' in window)) {
+    return;
+  }
+
+  const pengamat = new IntersectionObserver(function (daftar) {
+    for (let i = 0; i < daftar.length; i++) {
+      if (daftar[i].isIntersecting) {
+        daftar[i].target.classList.add('tampil');
+        pengamat.unobserve(daftar[i].target);
+      }
+    }
+  }, { threshold: 0.05 });
+
+  const bagian = ambilSemua('#app .hero, #app .sp, #app .pagehead, #app .about, #app .pdp, #app .details, #app .article');
+  for (let i = 0; i < bagian.length; i++) {
+    bagian[i].classList.add('reveal');
+    pengamat.observe(bagian[i]);
   }
 }
 
@@ -209,6 +249,7 @@ function bukaModalBeli(id, namaToko) {
   ambil('#modal').hidden = false;
   ambil('.box .btn').focus();
 }
+
 
 // ===== 4. KOMPONEN HTML =====
 
@@ -837,6 +878,7 @@ function halamanFavorit() {
   return { judul: 'Favorit', html: html, setelah: perbaruiGrid };
 }
 
+
 // ===== 6. ROUTER =====
 // Alamat memakai hash, contoh: index.html#/produk/w1
 // "#/produk/w1" dipecah menjadi ['', 'produk', 'w1']
@@ -875,6 +917,7 @@ function tampilkanHalaman() {
   if (halaman.setelah) {
     halaman.setelah();
   }
+  aktifkanEfekMuncul();
 
   // Tandai menu navbar yang aktif
   const linkMenu = ambilSemua('#menu a');
@@ -892,8 +935,9 @@ function tampilkanHalaman() {
   ambil('#q').value = '';
   ambil('#sres').innerHTML = '';
   tutupModal();
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
+
 
 // ===== 7. EVENT =====
 
@@ -966,7 +1010,13 @@ document.addEventListener('click', function (e) {
   // Ganti foto utama dengan thumbnail
   el = target.closest('[data-thumb]');
   if (el) {
-    ambil('#main').src = 'img/' + el.dataset.thumb + '.jpg';
+    const fotoUtama = ambil('#main');
+    const fileBaru = 'img/' + el.dataset.thumb + '.jpg';
+    fotoUtama.classList.add('pudar');
+    setTimeout(function () {
+      fotoUtama.src = fileBaru;
+      fotoUtama.classList.remove('pudar');
+    }, 200);
     aktifkanSatu(ambilSemua('[data-thumb]'), el);
     return;
   }
@@ -1077,6 +1127,7 @@ ambil('#nl').addEventListener('submit', function (e) {
   pesan.textContent = 'Terima kasih, kamu sudah terdaftar.';
   ambil('#em').value = '';
 });
+
 
 // ===== 8. JALANKAN APLIKASI =====
 
