@@ -1,5 +1,4 @@
 /* Stylora — data.js
-   Semua data dummy ada di file ini. Ganti dengan data asli tim.
    Harga ditulis dalam ribuan rupiah (349 = Rp349.000).
    Nama file gambar produk di folder img/ = id produk (contoh: w1.jpg). */
 
